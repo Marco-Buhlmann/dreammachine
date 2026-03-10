@@ -1,26 +1,63 @@
 ---
-const links = [
-  { label: 'DM Sound', href: 'https://open.spotify.com/playlist/0po8Elt4Mqje3HwKV6a05U?si=8d0273f371d64f8b', external: true },
-  { label: 'Contact', href: '/contact', external: false },
-  { label: 'Login', href: '/events', external: false },
-];
 ---
-<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 mix-blend-difference">
-  <a href="/" class="text-white text-sm font-medium tracking-widest uppercase">
+<!-- Fixed transparent nav — white text over video/image backgrounds -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5">
+  <a href="/" class="audiowide text-white text-sm tracking-wide hover:opacity-70 transition-opacity">
     DreamMachine
   </a>
   <ul class="flex items-center gap-8">
-    {links.map(link => (
-      <li>
-        <a
-          href={link.href}
-          target={link.external ? '_blank' : undefined}
-          rel={link.external ? 'noopener noreferrer' : undefined}
-          class="text-white text-xs tracking-widest uppercase opacity-70 hover:opacity-100 transition-opacity duration-300"
-        >
-          {link.label}
-        </a>
-      </li>
-    ))}
+    <li>
+      <a
+        href="https://open.spotify.com/playlist/0po8Elt4Mqje3HwKV6a05U?si=8d0273f371d64f8b"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-white text-xs tracking-widest uppercase opacity-70 hover:opacity-100 transition-opacity"
+      >DM Sound</a>
+    </li>
+    <li>
+      <a href="/contact" class="text-white text-xs tracking-widest uppercase opacity-70 hover:opacity-100 transition-opacity">
+        Contact
+      </a>
+    </li>
+    <li>
+      <a href="/events" class="text-white text-xs tracking-widest uppercase opacity-70 hover:opacity-100 transition-opacity">
+        Login
+      </a>
+    </li>
   </ul>
 </nav>
+
+<!-- Fixed Spotify pill — right edge, always visible -->
+<a
+  href="https://open.spotify.com/playlist/0po8Elt4Mqje3HwKV6a05U?si=8d0273f371d64f8b"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Listen on Spotify"
+  style="
+    position: fixed;
+    right: -28px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #1DB954;
+    color: #000;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px 20px 0 0;
+    text-decoration: none;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+  "
+>
+  <!-- Spotify icon -->
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.441 17.318c-.21.322-.64.424-.963.213-2.636-1.612-5.955-1.976-9.867-1.082-.376.086-.752-.147-.838-.523-.086-.376.147-.752.523-.838 4.276-1.004 7.95-.572 10.921 1.251.323.211.425.641.224.979zm1.451-3.23c-.263.404-.82.531-1.224.268-3.018-1.855-7.617-2.393-11.186-1.309-.462.14-.95-.118-1.09-.58-.14-.462.118-.95.58-1.09 4.076-1.237 9.146-.638 12.652 1.487.404.263.531.82.268 1.224zm.124-3.364C15.78 8.586 9.894 8.378 6.284 9.478c-.553.168-1.138-.143-1.307-.696-.168-.553.143-1.138.696-1.307 4.141-1.26 11.028-1.016 15.378 1.512.49.292.65.92.357 1.41-.292.49-.92.65-1.41.357l-.982-.5z"/>
+  </svg>
+  Spotify
+</a>

@@ -1,16 +1,116 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import Nav from '@/components/Nav.astro';
-import Footer from '@/components/Footer.astro';
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+// Format next event month dynamically
+const eventDate = new Date('2026-03-01');
+const eventLabel = eventDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 ---
 
 <Layout title="Events — DreamMachine">
   <Nav />
-  <main class="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 text-center">
-    <h1 class="text-white text-xs tracking-[0.4em] uppercase mb-12 opacity-40">Events</h1>
-    <p class="text-white/20 text-sm max-w-md">
-      Upcoming experiences and events.
+
+  <!-- Full-screen colorful background -->
+  <div style="position:fixed;inset:0;z-index:0;overflow:hidden;">
+    <!-- Vibrant psychedelic gradient — matches the colorful forest screenshot -->
+    <div style="
+      position:absolute;inset:0;
+      background:
+        radial-gradient(ellipse at 50% 100%, #2d5016 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 60%, #1a3a0a 0%, transparent 45%),
+        radial-gradient(ellipse at 80% 40%, #3d1a00 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 20%, #87ceeb 0%, transparent 40%),
+        radial-gradient(ellipse at 30% 80%, #ff8c00 0%, transparent 35%),
+        radial-gradient(ellipse at 70% 80%, #ff4500 0%, transparent 30%),
+        radial-gradient(ellipse at 10% 30%, #228b22 0%, transparent 40%),
+        radial-gradient(ellipse at 90% 70%, #9400d3 0%, transparent 35%),
+        linear-gradient(180deg, #87ceeb 0%, #4a8f3f 35%, #2d5a1b 60%, #1a3a0a 100%);
+      animation: colorshift 12s ease-in-out infinite alternate;
+      filter: saturate(1.4) brightness(0.85);
+    "></div>
+    <!-- Subtle dark overlay for text legibility -->
+    <div style="position:absolute;inset:0;background:rgba(0,0,0,0.25);"></div>
+  </div>
+
+  <main style="
+    position:relative;
+    z-index:10;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:6rem 1rem;
+  ">
+
+    <!-- Scrolling marquee -->
+    <div style="
+      position:absolute;
+      top:80px;
+      left:0;
+      right:0;
+      overflow:hidden;
+      opacity:0.85;
+      pointer-events:none;
+      user-select:none;
+    ">
+      <div style="
+        display:flex;
+        width:max-content;
+        animation:marquee 30s linear infinite;
+      ">
+        {Array.from({length: 6}).map(() => (
+          <span style="
+            color:#fff;
+            font-size:11px;
+            letter-spacing:0.35em;
+            text-transform:uppercase;
+            white-space:nowrap;
+            padding:0 3rem;
+            text-shadow:0 1px 8px rgba(0,0,0,0.5);
+          ">
+            Technology · At our core, we are music enthusiasts on a mission to spread love and music to the world.
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Owl logo (subtle center) -->
+    <img
+      src="/assets/owl-white.png"
+      alt="DreamMachine"
+      style="
+        width:clamp(80px,12vw,140px);
+        height:auto;
+        opacity:0.6;
+        filter:drop-shadow(0 0 20px rgba(255,255,255,0.3));
+        margin-bottom:2rem;
+      "
+    />
+
+    <!-- Event date -->
+    <p class="audiowide" style="
+      color:#fff;
+      font-size:clamp(1.4rem,4vw,2.2rem);
+      letter-spacing:0.1em;
+      text-shadow:0 2px 20px rgba(0,0,0,0.6);
+    ">
+      {eventLabel}
     </p>
   </main>
+
   <Footer />
 </Layout>
+
+<style>
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes colorshift {
+    0%   { filter: saturate(1.4) brightness(0.85) hue-rotate(0deg); }
+    100% { filter: saturate(1.6) brightness(0.9) hue-rotate(15deg); }
+  }
+</style>

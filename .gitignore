@@ -5,3 +5,7 @@ node_modules/
 !.env.example
 .DS_Store
 .wrangler/
+
+# Source assets — large original files, not for git
+# Processed/web-optimised versions live in public/assets/
+assets/

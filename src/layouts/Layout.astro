@@ -5,22 +5,43 @@ interface Props {
 }
 const {
   title = 'DreamMachine',
-  description = 'Immersive Experience Creator',
+  description = 'Creators of immersive experiences through art, music, and technology.',
 } = Astro.props;
 ---
 <!doctype html>
-<html lang="en" class="bg-black text-white">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="DreamMachine" />
+    <meta property="og:url" content="https://www.dreammachine.vision" />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <!-- Audiowide = the original DreamMachine brand font -->
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: #000;
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      .audiowide { font-family: 'Audiowide', sans-serif; }
+      @keyframes marquee {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+      }
+    </style>
   </head>
-  <body class="min-h-screen bg-black text-white font-sans antialiased">
+  <body>
     <slot />
   </body>
 </html>

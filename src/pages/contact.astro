@@ -1,56 +1,119 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import Nav from '@/components/Nav.astro';
-import Footer from '@/components/Footer.astro';
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Contact — DreamMachine">
   <Nav />
-  <main class="relative z-10 flex flex-col items-center justify-center min-h-screen px-6">
-    <div class="max-w-lg w-full">
-      <h1 class="text-white text-xs tracking-[0.4em] uppercase mb-12 opacity-40">Contact</h1>
+
+  <!-- Deep dark navy background, matching original -->
+  <main style="
+    min-height: 100vh;
+    background: #070a14;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 6rem 5vw 6rem;
+    gap: 4rem;
+  ">
+
+    <!-- Left: headline + location -->
+    <div>
+      <h1 class="audiowide" style="
+        font-size: clamp(2.8rem, 5.5vw, 5rem);
+        color: rgba(255,255,255,0.18);
+        line-height: 1.1;
+        margin-bottom: 3rem;
+        letter-spacing: -0.01em;
+      ">
+        Turn on,<br/>tune in,<br/>drop out.
+      </h1>
+
+      <p style="color:rgba(255,255,255,0.4);font-size:13px;letter-spacing:0.15em;margin-bottom:0.5rem;">
+        Los Angeles, California
+      </p>
+      <a
+        href="https://marcobuhlmann.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        style="color:rgba(255,255,255,0.35);font-size:12px;letter-spacing:0.1em;text-decoration:underline;text-underline-offset:3px;"
+      >
+        by MarcoBuhlmann.com
+      </a>
+    </div>
+
+    <!-- Right: email drop-in form -->
+    <div style="max-width: 480px;">
       <form
         name="contact"
         method="POST"
         data-netlify="true"
-        class="flex flex-col gap-6"
+        style="display:flex;flex-direction:column;gap:0;"
       >
         <input type="hidden" name="form-name" value="contact" />
-        <div>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            required
-            class="w-full bg-transparent border-b border-white/20 text-white placeholder:text-white/30 py-3 text-sm focus:outline-none focus:border-white/60 transition-colors"
-          />
-        </div>
-        <div>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            required
-            class="w-full bg-transparent border-b border-white/20 text-white placeholder:text-white/30 py-3 text-sm focus:outline-none focus:border-white/60 transition-colors"
-          />
-        </div>
-        <div>
-          <textarea
-            name="message"
-            placeholder="Message"
-            rows="4"
-            required
-            class="w-full bg-transparent border-b border-white/20 text-white placeholder:text-white/30 py-3 text-sm focus:outline-none focus:border-white/60 transition-colors resize-none"
-          ></textarea>
-        </div>
+
+        <label style="
+          color:rgba(255,255,255,0.5);
+          font-size:12px;
+          letter-spacing:0.15em;
+          text-transform:uppercase;
+          margin-bottom:8px;
+          display:block;
+        ">Email</label>
+
+        <input
+          type="email"
+          name="email"
+          placeholder=""
+          required
+          style="
+            width:100%;
+            background:transparent;
+            border:1px solid rgba(255,255,255,0.2);
+            color:#fff;
+            font-size:14px;
+            padding:14px 16px;
+            outline:none;
+            margin-bottom:24px;
+            transition:border-color 0.2s;
+          "
+          onfocus="this.style.borderColor='rgba(255,255,255,0.6)'"
+          onblur="this.style.borderColor='rgba(255,255,255,0.2)'"
+        />
+
         <button
           type="submit"
-          class="self-start text-white text-xs tracking-[0.3em] uppercase border-b border-white/20 pb-1 hover:border-white/80 transition-colors duration-300 mt-4"
+          class="audiowide"
+          style="
+            background:transparent;
+            border:none;
+            color:rgba(255,255,255,0.5);
+            font-size:13px;
+            letter-spacing:0.3em;
+            text-transform:uppercase;
+            cursor:pointer;
+            text-align:left;
+            padding:0 0 4px 0;
+            border-bottom:1px solid rgba(255,255,255,0.25);
+            width:fit-content;
+            transition:color 0.2s, border-color 0.2s;
+          "
+          onmouseover="this.style.color='rgba(255,255,255,0.9)';this.style.borderColor='rgba(255,255,255,0.7)'"
+          onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.25)'"
         >
-          Send →
+          Drop In
         </button>
       </form>
     </div>
   </main>
+
+  <!-- Mobile layout fix -->
+  <style>
+    @media (max-width: 700px) {
+      main { grid-template-columns: 1fr !important; padding: 8rem 6vw 6rem !important; }
+    }
+  </style>
+
   <Footer />
 </Layout>
