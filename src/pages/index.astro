@@ -34,31 +34,32 @@ import Footer from '../components/Footer.astro';
     justify-content: center;
   ">
 
-    <!-- Scrolling marquee -->
+    <!-- Scrolling marquee — 3× original size, half speed (44s) -->
     <div style="
       position: absolute;
-      top: 80px;
+      top: 68px;
       left: 0;
       right: 0;
       overflow: hidden;
-      opacity: 0.55;
+      opacity: 0.6;
       pointer-events: none;
       user-select: none;
     ">
       <div style="
         display: flex;
         width: max-content;
-        animation: marquee 22s linear infinite;
+        animation: marquee 44s linear infinite;
       ">
-        {Array.from({length: 8}).map(() => (
+        {Array.from({length: 6}).map(() => (
           <span style="
             color: #fff;
-            font-size: 13px;
-            letter-spacing: 0.45em;
+            font-size: 39px;
+            letter-spacing: 0.35em;
             text-transform: uppercase;
             white-space: nowrap;
-            padding: 0 2rem;
+            padding: 0 3rem;
             font-family: 'Audiowide', sans-serif;
+            line-height: 1;
           ">
             [Immersive + Experience + Creator]
           </span>
@@ -66,48 +67,39 @@ import Footer from '../components/Footer.astro';
       </div>
     </div>
 
-    <!-- Owl logo -->
-    <img
-      src="/assets/owl-white.png"
-      alt="DreamMachine OWL"
-      style="
-        width: clamp(180px, 25vw, 280px);
-        height: auto;
-        filter: drop-shadow(0 0 40px rgba(255,255,255,0.15));
-        margin-bottom: 2.5rem;
-      "
-    />
-
-    <!-- OWL · EVENTS buttons -->
-    <div style="display:flex;align-items:center;gap:3rem;">
+    <!-- OWL · EVENTS buttons — 50% larger, neon violet colour from example file -->
+    <!-- No owl image — the video already has an owl watermark baked in -->
+    <div style="display:flex;align-items:center;gap:4rem;">
       <a href="/owl" style="
-        color: #fff;
-        font-size: 11px;
+        color: #c084fc;
+        font-size: 17px;
         letter-spacing: 0.45em;
         text-transform: uppercase;
         text-decoration: none;
-        border-bottom: 1px solid rgba(255,255,255,0.4);
-        padding-bottom: 4px;
-        transition: border-color 0.3s;
+        border-bottom: 1px solid rgba(192,132,252,0.45);
+        padding-bottom: 5px;
+        transition: color 0.3s, border-color 0.3s;
         font-family: 'Audiowide', sans-serif;
+        text-shadow: 0 0 18px rgba(192,132,252,0.6);
       "
-      onmouseover="this.style.borderColor='rgba(255,255,255,0.9)'"
-      onmouseout="this.style.borderColor='rgba(255,255,255,0.4)'"
+      onmouseover="this.style.color='#e0aaff';this.style.borderColor='rgba(224,170,255,0.8)'"
+      onmouseout="this.style.color='#c084fc';this.style.borderColor='rgba(192,132,252,0.45)'"
       >OWL</a>
 
       <a href="/experience" style="
-        color: #fff;
-        font-size: 11px;
+        color: #c084fc;
+        font-size: 17px;
         letter-spacing: 0.45em;
         text-transform: uppercase;
         text-decoration: none;
-        border-bottom: 1px solid rgba(255,255,255,0.4);
-        padding-bottom: 4px;
-        transition: border-color 0.3s;
+        border-bottom: 1px solid rgba(192,132,252,0.45);
+        padding-bottom: 5px;
+        transition: color 0.3s, border-color 0.3s;
         font-family: 'Audiowide', sans-serif;
+        text-shadow: 0 0 18px rgba(192,132,252,0.6);
       "
-      onmouseover="this.style.borderColor='rgba(255,255,255,0.9)'"
-      onmouseout="this.style.borderColor='rgba(255,255,255,0.4)'"
+      onmouseover="this.style.color='#e0aaff';this.style.borderColor='rgba(224,170,255,0.8)'"
+      onmouseout="this.style.color='#c084fc';this.style.borderColor='rgba(192,132,252,0.45)'"
       >EVENTS</a>
     </div>
   </main>
