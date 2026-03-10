@@ -1,0 +1,26 @@
+---
+const links = [
+  { label: 'DM Sound', href: 'https://open.spotify.com/playlist/0po8Elt4Mqje3HwKV6a05U?si=8d0273f371d64f8b', external: true },
+  { label: 'Contact', href: '/contact', external: false },
+  { label: 'Login', href: '/events', external: false },
+];
+---
+<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 mix-blend-difference">
+  <a href="/" class="text-white text-sm font-medium tracking-widest uppercase">
+    DreamMachine
+  </a>
+  <ul class="flex items-center gap-8">
+    {links.map(link => (
+      <li>
+        <a
+          href={link.href}
+          target={link.external ? '_blank' : undefined}
+          rel={link.external ? 'noopener noreferrer' : undefined}
+          class="text-white text-xs tracking-widest uppercase opacity-70 hover:opacity-100 transition-opacity duration-300"
+        >
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

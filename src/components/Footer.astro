@@ -1,0 +1,30 @@
+---
+---
+<footer class="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 mix-blend-difference">
+  <span class="text-white text-xs tracking-widest opacity-40">
+    © 2017–2025 DreamMachine All rights reserved.
+  </span>
+  <button
+    id="bg-toggle"
+    class="text-white text-xs tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity duration-300"
+    aria-label="Toggle background animation"
+  >
+    Pause Background
+  </button>
+</footer>
+
+<script>
+  const btn = document.getElementById('bg-toggle');
+  const bg = document.getElementById('dm-bg');
+  let paused = false;
+
+  btn?.addEventListener('click', () => {
+    paused = !paused;
+    if (bg) {
+      bg.style.animationPlayState = paused ? 'paused' : 'running';
+    }
+    if (btn) {
+      btn.textContent = paused ? 'Play Background' : 'Pause Background';
+    }
+  });
+</script>

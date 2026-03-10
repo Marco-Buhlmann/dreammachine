@@ -1,0 +1,56 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Nav from '@/components/Nav.astro';
+import Footer from '@/components/Footer.astro';
+---
+
+<Layout title="Contact — DreamMachine">
+  <Nav />
+  <main class="relative z-10 flex flex-col items-center justify-center min-h-screen px-6">
+    <div class="max-w-lg w-full">
+      <h1 class="text-white text-xs tracking-[0.4em] uppercase mb-12 opacity-40">Contact</h1>
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        class="flex flex-col gap-6"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <div>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            required
+            class="w-full bg-transparent border-b border-white/20 text-white placeholder:text-white/30 py-3 text-sm focus:outline-none focus:border-white/60 transition-colors"
+          />
+        </div>
+        <div>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            class="w-full bg-transparent border-b border-white/20 text-white placeholder:text-white/30 py-3 text-sm focus:outline-none focus:border-white/60 transition-colors"
+          />
+        </div>
+        <div>
+          <textarea
+            name="message"
+            placeholder="Message"
+            rows="4"
+            required
+            class="w-full bg-transparent border-b border-white/20 text-white placeholder:text-white/30 py-3 text-sm focus:outline-none focus:border-white/60 transition-colors resize-none"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="self-start text-white text-xs tracking-[0.3em] uppercase border-b border-white/20 pb-1 hover:border-white/80 transition-colors duration-300 mt-4"
+        >
+          Send →
+        </button>
+      </form>
+    </div>
+  </main>
+  <Footer />
+</Layout>
