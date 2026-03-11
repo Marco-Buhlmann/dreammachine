@@ -34,20 +34,21 @@ import Footer from '../components/Footer.astro';
     </p>
   </section>
 
-  <!-- ── ORANGE DIVIDER ───────────────────────────────────── -->
-  <div style="
-    height: 3px;
-    background: linear-gradient(to right,
-      transparent 0%,
-      #cc4400 15%,
-      #ff8800 35%,
-      #ffaa33 50%,
-      #ff8800 65%,
-      #cc4400 85%,
-      transparent 100%
-    );
-    box-shadow: 0 0 18px 4px rgba(255,120,0,0.5);
-  "></div>
+  <!-- ── ORANGE INFO SECTION ─────────────────────────────────
+       V-notch at top bites into fire hero; diagonal cut at bottom.
+       z-index 3 so it layers above the fire section's bottom edge.
+  ─────────────────────────────────────────────────────────── -->
+  <section class="owl-info-section">
+    <h2 class="audiowide owl-info-title">DreamMachine OWL</h2>
+    <p class="owl-info-body">
+      <strong>8FT tall art on fire piece</strong> created from 7'–10' Custom
+      Steel. Pyro rigged across body and wings: 1/2&quot; pipe T‑Burner × 4
+      var. width. Flame projectors on both wingtips create an x‑shooting flame
+      effect. The wings are slotted into the body of the owl with hitch pins.
+      The owl's body attaches to a baseplate w/ bolt plate or hitch pinned
+      sleeve. Approximate weight 1200 lbs.
+    </p>
+  </section>
 
   <!-- ── CONTENT SECTIONS ──────────────────────────────────── -->
   <div class="sections-wrap">
@@ -137,7 +138,7 @@ import Footer from '../components/Footer.astro';
         <img src="/assets/owl-build1.png" alt="OWL build" />
       </div>
       <div class="gallery-hex">
-        <img src="/assets/owl-steel.png" alt="OWL steel" />
+        <img src="/assets/owl-build2.png" alt="OWL build" />
       </div>
       <div class="gallery-hex">
         <img src="/assets/owl-d1.png" alt="OWL neon" />
@@ -178,7 +179,7 @@ import Footer from '../components/Footer.astro';
 
   /* ── Hero ── */
   .hero-section {
-    min-height: 80vh;
+    min-height: 160vh;   /* doubled from 80vh */
     display: flex;
     align-items: flex-end;
     padding: 0 5vw 4rem;
@@ -304,6 +305,47 @@ import Footer from '../components/Footer.astro';
     height: 100%;
     object-fit: cover;
     display: block;
+  }
+
+  /* ── Orange info section ── */
+  .owl-info-section {
+    position: relative;
+    z-index: 3;
+    /* Pull up 100px so the V tip overlaps into the fire section's bottom */
+    margin-top: -100px;
+    /* V notch at top (100px deep), diagonal cut at bottom-right */
+    clip-path: polygon(0 100px, 50% 0, 100% 100px, 100% calc(100% - 100px), 0 100%);
+    background: linear-gradient(
+      150deg,
+      #5a1e00 0%,
+      #a83800 15%,
+      #d46000 35%,
+      #e07800 50%,
+      #c05500 70%,
+      #7a2800 88%,
+      #0a0800 100%
+    );
+    /* Extra padding to compensate for clip-path eating into content */
+    padding: calc(100px + 3.5rem) 8vw calc(120px + 2.5rem);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: center;
+  }
+  .owl-info-title {
+    color: #fff;
+    font-size: clamp(2rem, 4.5vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+  }
+  .owl-info-body {
+    color: rgba(255,255,255,0.82);
+    font-size: clamp(13px, 1.15vw, 16px);
+    line-height: 1.8;
+  }
+  .owl-info-body strong {
+    color: #fff;
+    font-weight: 600;
   }
 
   /* ── Responsive ── */
