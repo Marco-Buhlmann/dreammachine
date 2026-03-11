@@ -229,7 +229,6 @@ import Footer from '../components/Footer.astro';
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    min-height: 55vh;
     border-bottom: 1px solid rgba(255,255,255,0.05);
   }
   /* reverse = badge on left, text on right */
@@ -252,13 +251,14 @@ import Footer from '../components/Footer.astro';
     max-width: 420px;
   }
 
-  /* Badge column — dark bg + octagon clip */
+  /* Badge column — equal padding on all sides so top/bottom matches horizontal gap */
   .badge-col {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 55vh;
     background: #0f0f0f;
+    /* horizontal gap = (50vw - badge-width) / 2 ≈ 6vw → match top/bottom */
+    padding: clamp(40px, 6vw, 80px) 0;
   }
   /* Badge — octagon clip, image fills fully, no padding — 2× content sections */
   .badge {
