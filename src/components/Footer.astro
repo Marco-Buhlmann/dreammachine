@@ -9,42 +9,39 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 16px 24px;
+  padding: 18px 40px;
   pointer-events: none;
 ">
-  <!-- Centered copyright -->
-  <span style="
-    color: rgba(255,255,255,0.5);
-    font-size: 11px;
-    letter-spacing: 0.1em;
+  <span class="audiowide" style="
+    color: #E5E5E5;
+    font-size: clamp(10px, 0.85vw, 14px);
+    letter-spacing: 0.08em;
+    opacity: 0.8;
     pointer-events: none;
   ">
     © 2017-2026 DreamMachine All rights reserved.
   </span>
 
-  <!-- MB logo — bottom right, links to marcobuhlmann.com -->
   <a
     href="https://marcobuhlmann.com"
     target="_blank"
     rel="noopener noreferrer"
     style="
       position: absolute;
-      right: 24px;
-      bottom: 12px;
-      opacity: 0.5;
+      right: 40px;
+      bottom: 14px;
+      opacity: 0.7;
       transition: opacity 0.2s;
       pointer-events: all;
     "
     onmouseover="this.style.opacity='1'"
-    onmouseout="this.style.opacity='0.5'"
+    onmouseout="this.style.opacity='0.7'"
     aria-label="Marco Buhlmann"
   >
     <img
-      src="/assets/mb-logo.png"
+      src="/assets/mb-logo-w.png"
       alt="MB"
-      width="28"
-      height="28"
-      style="display: block; filter: invert(1);"
+      style="display:block;height:36px;width:auto;"
     />
   </a>
 </footer>
