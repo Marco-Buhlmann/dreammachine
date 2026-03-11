@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="OWL — DreamMachine">
@@ -138,7 +137,7 @@ import Footer from '../components/Footer.astro';
     </div>
   </section>
 
-  <Footer />
+
 </Layout>
 
 <style>
@@ -181,7 +180,7 @@ import Footer from '../components/Footer.astro';
     z-index: 2;
   }
   .hero-owl-img {
-    width: clamp(380px, 50vw, 640px);  /* 2× original */
+    width: clamp(285px, 37.5vw, 480px);  /* 2× original, −25% */
     height: auto;
     filter: drop-shadow(0 0 60px rgba(255,160,40,0.6));
   }
