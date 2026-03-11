@@ -20,18 +20,7 @@ import Footer from '../components/Footer.astro';
       <img src="/assets/owl-steel.png" alt="DreamMachine OWL" class="hero-owl-img" />
     </div>
 
-    <!-- Bottom-left title -->
-    <div class="hero-title">
-      <p class="audiowide hero-sub">DreamMachine</p>
-      <h1 class="audiowide hero-h1">OWL</h1>
-    </div>
-
-    <!-- Top-right description -->
-    <p class="hero-desc">
-      An immersive art installation born from<br/>
-      the intersection of sculpture, sound,<br/>
-      and spectacle.
-    </p>
+    <!-- title + description removed per design review -->
   </section>
 
   <!-- ── ORANGE INFO SECTION ─────────────────────────────────
@@ -179,7 +168,7 @@ import Footer from '../components/Footer.astro';
 
   /* ── Hero ── */
   .hero-section {
-    min-height: 160vh;   /* doubled from 80vh */
+    min-height: 80vh;   /* halved from 160vh */
     display: flex;
     align-items: flex-end;
     padding: 0 5vw 4rem;
@@ -188,13 +177,13 @@ import Footer from '../components/Footer.astro';
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -58%);
+    transform: translate(-50%, -50%);
     z-index: 2;
   }
   .hero-owl-img {
-    width: clamp(200px, 26vw, 340px);
+    width: clamp(380px, 50vw, 640px);  /* 2× original */
     height: auto;
-    filter: drop-shadow(0 0 50px rgba(255,160,40,0.55));
+    filter: drop-shadow(0 0 60px rgba(255,160,40,0.6));
   }
   .hero-title {
     position: relative;
