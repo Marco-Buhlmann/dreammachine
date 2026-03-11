@@ -7,5 +7,5 @@ node_modules/
 .wrangler/
 
 # Source assets — large original files, not for git
-# Processed/web-optimised versions live in public/assets/
-assets/
+# /assets/ anchored to root so public/assets/ stays tracked
+/assets/
