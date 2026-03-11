@@ -15,9 +15,9 @@ import Footer from '../components/Footer.astro';
     </video>
     <div class="fire-overlay"></div>
 
-    <!-- Centred gold owl logo -->
+    <!-- Centred steel owl -->
     <div class="hero-owl">
-      <img src="/assets/owl-gold2.png" alt="DreamMachine OWL" class="hero-owl-img" />
+      <img src="/assets/owl-steel.png" alt="DreamMachine OWL" class="hero-owl-img" />
     </div>
 
     <!-- Bottom-left title -->
@@ -33,6 +33,21 @@ import Footer from '../components/Footer.astro';
       and spectacle.
     </p>
   </section>
+
+  <!-- ── ORANGE DIVIDER ───────────────────────────────────── -->
+  <div style="
+    height: 3px;
+    background: linear-gradient(to right,
+      transparent 0%,
+      #cc4400 15%,
+      #ff8800 35%,
+      #ffaa33 50%,
+      #ff8800 65%,
+      #cc4400 85%,
+      transparent 100%
+    );
+    box-shadow: 0 0 18px 4px rgba(255,120,0,0.5);
+  "></div>
 
   <!-- ── CONTENT SECTIONS ──────────────────────────────────── -->
   <div class="sections-wrap">
@@ -245,9 +260,9 @@ import Footer from '../components/Footer.astro';
     min-height: 55vh;
     background: #0f0f0f;
   }
-  /* Badge — octagon clip, image fills fully, no padding */
+  /* Badge — octagon clip, image fills fully, no padding — 2× content sections */
   .badge {
-    width: clamp(180px, 22vw, 280px);
+    width: clamp(320px, 38vw, 520px);
     aspect-ratio: 1;
     clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
     overflow: hidden;
