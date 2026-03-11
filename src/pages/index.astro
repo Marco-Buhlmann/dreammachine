@@ -28,15 +28,18 @@ import Footer from '../components/Footer.astro';
     justify-content: center;
   ">
 
-    <!-- Scrolling marquee — halved from previous (3.2vw → 1.6vw) -->
+    <!-- Scrolling marquee — 75% opacity, fades 15% in from each edge -->
     <div style="
       position: absolute;
       top: 120px;
       left: 0;
       right: 0;
       overflow: hidden;
+      opacity: 0.75;
       pointer-events: none;
       user-select: none;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
     ">
       <div style="
         display: flex;
@@ -56,6 +59,18 @@ import Footer from '../components/Footer.astro';
         ))}
       </div>
     </div>
+
+    <!-- Gold owl — mix-blend-mode:screen removes the dark background -->
+    <img
+      src="/assets/owl-gold.png"
+      alt="DreamMachine OWL"
+      style="
+        width: clamp(140px, 14vw, 220px);
+        height: auto;
+        mix-blend-mode: screen;
+        margin-bottom: 1.2rem;
+      "
+    />
 
     <!-- OWL · EVENTS buttons — half size, equal width, top/bottom glow only -->
     <div style="display:flex;align-items:center;gap:clamp(12px,1.5vw,24px);">
@@ -105,27 +120,4 @@ import Footer from '../components/Footer.astro';
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
   }
-
-  /* Top + bottom glow that fades to transparent at edges — no side borders */
-  .btn-glow {
-    position: relative;
-  }
-  .btn-glow::before,
-  .btn-glow::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(
-      to right,
-      transparent 0%,
-      rgba(255, 255, 255, 0.7) 30%,
-      rgba(255, 255, 255, 0.7) 70%,
-      transparent 100%
-    );
-    pointer-events: none;
-  }
-  .btn-glow::before { top: 0; }
-  .btn-glow::after  { bottom: 0; }
 </style>
