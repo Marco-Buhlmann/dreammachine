@@ -27,38 +27,6 @@ import Nav from '../components/Nav.astro';
     justify-content: center;
   ">
 
-    <!-- Scrolling marquee — 75% opacity, fades 15% in from each edge -->
-    <div style="
-      position: absolute;
-      top: 120px;
-      left: 0;
-      right: 0;
-      overflow: hidden;
-      opacity: 0.75;
-      pointer-events: none;
-      user-select: none;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 45%, black 55%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 45%, black 55%, transparent 100%);
-    ">
-      <div style="
-        display: flex;
-        width: max-content;
-        animation: marquee 55s linear infinite;
-      ">
-        {Array.from({length: 8}).map(() => (
-          <span class="audiowide" style="
-            color: #E5E5E5;
-            font-size: clamp(12px, 1.6vw, 24px);
-            white-space: nowrap;
-            padding: 0 3rem;
-            line-height: 1.2;
-          ">
-            [Immersive + Experience + Creator]
-          </span>
-        ))}
-      </div>
-    </div>
-
     <!-- OWL · EVENTS buttons — pinned below the video's owl icon (~68% from top) -->
     <div style="
       position: absolute;
@@ -111,8 +79,4 @@ import Nav from '../components/Nav.astro';
 </Layout>
 
 <style>
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
 </style>

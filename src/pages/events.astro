@@ -43,33 +43,33 @@ const eventLabel = eventDate.toLocaleDateString('en-US', { month: 'long', year: 
     padding:6rem 1rem;
   ">
 
-    <!-- Scrolling marquee -->
+    <!-- Scrolling marquee — moved from homepage -->
     <div style="
       position:absolute;
       top:80px;
       left:0;
       right:0;
       overflow:hidden;
-      opacity:0.85;
+      opacity:0.75;
       pointer-events:none;
       user-select:none;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 45%, black 55%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 45%, black 55%, transparent 100%);
     ">
       <div style="
         display:flex;
         width:max-content;
-        animation:marquee 30s linear infinite;
+        animation:marquee 55s linear infinite;
       ">
-        {Array.from({length: 6}).map(() => (
-          <span style="
-            color:#fff;
-            font-size:11px;
-            letter-spacing:0.35em;
-            text-transform:uppercase;
+        {Array.from({length: 8}).map(() => (
+          <span class="audiowide" style="
+            color:#E5E5E5;
+            font-size:clamp(12px,1.6vw,24px);
             white-space:nowrap;
             padding:0 3rem;
-            text-shadow:0 1px 8px rgba(0,0,0,0.5);
+            line-height:1.2;
           ">
-            Technology · At our core, we are music enthusiasts on a mission to spread love and music to the world.
+            [Immersive + Experience + Creator]
           </span>
         ))}
       </div>
