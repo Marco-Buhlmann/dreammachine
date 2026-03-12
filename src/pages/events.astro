@@ -1,37 +1,103 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
-// Format next event month dynamically
-const eventDate = new Date('2026-03-01');
-const eventLabel = eventDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 ---
 
 <Layout title="Events — DreamMachine">
   <Nav />
 
-  <!-- Full-screen colorful background -->
+  <!-- Full-screen video background -->
   <div style="position:fixed;inset:0;z-index:0;overflow:hidden;">
-    <!-- Vibrant psychedelic gradient — matches the colorful forest screenshot -->
-    <div style="
-      position:absolute;inset:0;
-      background:
-        radial-gradient(ellipse at 50% 100%, #2d5016 0%, transparent 55%),
-        radial-gradient(ellipse at 20% 60%, #1a3a0a 0%, transparent 45%),
-        radial-gradient(ellipse at 80% 40%, #3d1a00 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 20%, #87ceeb 0%, transparent 40%),
-        radial-gradient(ellipse at 30% 80%, #ff8c00 0%, transparent 35%),
-        radial-gradient(ellipse at 70% 80%, #ff4500 0%, transparent 30%),
-        radial-gradient(ellipse at 10% 30%, #228b22 0%, transparent 40%),
-        radial-gradient(ellipse at 90% 70%, #9400d3 0%, transparent 35%),
-        linear-gradient(180deg, #87ceeb 0%, #4a8f3f 35%, #2d5a1b 60%, #1a3a0a 100%);
-      animation: colorshift 12s ease-in-out infinite alternate;
-      filter: saturate(1.4) brightness(0.85);
-    "></div>
-    <!-- Subtle dark overlay for text legibility -->
-    <div style="position:absolute;inset:0;background:rgba(0,0,0,0.25);"></div>
+    <video
+      autoplay loop muted playsinline
+      style="width:100%;height:100%;object-fit:cover;"
+    >
+      <source src="/assets/dm-events.mp4" type="video/mp4" />
+    </video>
+    <div style="position:absolute;inset:0;background:rgba(0,0,0,0.45);"></div>
   </div>
 
-  <main style="
+  <!-- Code Gate Overlay -->
+  <div id="gate-overlay" style="
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,0.82);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+  ">
+    <img
+      src="/assets/owl-white.png"
+      alt="DreamMachine"
+      style="width:clamp(60px,8vw,100px);height:auto;opacity:0.7;margin-bottom:2.5rem;"
+    />
+    <p class="audiowide" style="
+      color:#C9A97A;
+      font-size:clamp(0.6rem,1vw,0.85rem);
+      letter-spacing:0.35em;
+      text-transform:uppercase;
+      margin-bottom:2rem;
+      opacity:0.8;
+    ">Enter Access Code</p>
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
+      <input
+        id="gate-input"
+        type="password"
+        placeholder="· · · · · ·"
+        maxlength="10"
+        autocomplete="off"
+        class="audiowide"
+        style="
+          background:rgba(255,255,255,0.06);
+          border:1px solid rgba(201,169,122,0.4);
+          border-radius:4px;
+          color:#fff;
+          font-size:clamp(1rem,2vw,1.4rem);
+          letter-spacing:0.4em;
+          text-align:center;
+          padding:0.75rem 1.5rem;
+          width:clamp(200px,20vw,280px);
+          outline:none;
+          transition:border-color 0.2s;
+        "
+      />
+      <p id="gate-error" style="
+        color:#e05c5c;
+        font-size:0.75rem;
+        letter-spacing:0.15em;
+        opacity:0;
+        transition:opacity 0.3s;
+        font-family:sans-serif;
+      ">Incorrect code</p>
+      <button
+        id="gate-btn"
+        class="audiowide btn-glow"
+        style="
+          color:#C9A97A;
+          font-size:clamp(0.55rem,1vw,0.8rem);
+          letter-spacing:0.25em;
+          padding:8px 0;
+          width:clamp(140px,14vw,200px);
+          text-align:center;
+          background:rgba(14,31,47,0.5);
+          border:none;
+          border-radius:20px;
+          cursor:pointer;
+          transition:background 0.25s,color 0.25s;
+        "
+        onmouseover="this.style.background='rgba(14,31,47,0.8)';this.style.color='#e8c99a'"
+        onmouseout="this.style.background='rgba(14,31,47,0.5)';this.style.color='#C9A97A'"
+      >E N T E R</button>
+    </div>
+  </div>
+
+  <!-- Page content (revealed after code) -->
+  <main id="events-content" style="
     position:relative;
     z-index:10;
     min-height:100vh;
@@ -42,73 +108,41 @@ const eventLabel = eventDate.toLocaleDateString('en-US', { month: 'long', year: 
     text-align:center;
     padding:6rem 1rem;
   ">
-
-    <!-- Scrolling marquee — moved from homepage -->
-    <div style="
-      position:absolute;
-      top:80px;
-      left:0;
-      right:0;
-      overflow:hidden;
-      opacity:0.75;
-      pointer-events:none;
-      user-select:none;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 45%, black 55%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 45%, black 55%, transparent 100%);
-    ">
-      <div style="
-        display:flex;
-        width:max-content;
-        animation:marquee 55s linear infinite;
-      ">
-        {Array.from({length: 8}).map(() => (
-          <span class="audiowide" style="
-            color:#E5E5E5;
-            font-size:clamp(12px,1.6vw,24px);
-            white-space:nowrap;
-            padding:0 3rem;
-            line-height:1.2;
-          ">
-            [Immersive + Experience + Creator]
-          </span>
-        ))}
-      </div>
-    </div>
-
-    <!-- Owl logo (subtle center) -->
-    <img
-      src="/assets/owl-white.png"
-      alt="DreamMachine"
-      style="
-        width:clamp(80px,12vw,140px);
-        height:auto;
-        opacity:0.6;
-        filter:drop-shadow(0 0 20px rgba(255,255,255,0.3));
-        margin-bottom:2rem;
-      "
-    />
-
-    <!-- Event date -->
-    <p class="audiowide" style="
-      color:#fff;
-      font-size:clamp(1.4rem,4vw,2.2rem);
-      letter-spacing:0.1em;
-      text-shadow:0 2px 20px rgba(0,0,0,0.6);
-    ">
-      {eventLabel}
-    </p>
+    <!-- Content to be added later -->
   </main>
-
 
 </Layout>
 
+<script>
+  const CORRECT_CODE = 'DMXXVI';
+  const input = document.getElementById('gate-input') as HTMLInputElement;
+  const btn = document.getElementById('gate-btn');
+  const error = document.getElementById('gate-error');
+  const overlay = document.getElementById('gate-overlay');
+
+  function tryUnlock() {
+    if (input.value.trim().toUpperCase() === CORRECT_CODE) {
+      overlay!.style.transition = 'opacity 0.6s';
+      overlay!.style.opacity = '0';
+      setTimeout(() => { overlay!.style.display = 'none'; }, 600);
+    } else {
+      error!.style.opacity = '1';
+      input.style.borderColor = 'rgba(224,92,92,0.7)';
+      input.value = '';
+      setTimeout(() => {
+        error!.style.opacity = '0';
+        input.style.borderColor = 'rgba(201,169,122,0.4)';
+      }, 2000);
+    }
+  }
+
+  btn?.addEventListener('click', tryUnlock);
+  input?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') tryUnlock();
+  });
+</script>
+
 <style>
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  @keyframes colorshift {
-    0%   { filter: saturate(1.4) brightness(0.85) hue-rotate(0deg); }
-    100% { filter: saturate(1.6) brightness(0.9) hue-rotate(15deg); }
-  }
+  #gate-input::placeholder { opacity: 0.35; letter-spacing: 0.4em; }
+  #gate-input:focus { border-color: rgba(201,169,122,0.8); }
 </style>
