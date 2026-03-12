@@ -30,11 +30,15 @@ import Nav from '../components/Nav.astro';
     backdrop-filter:blur(12px);
     -webkit-backdrop-filter:blur(12px);
   ">
-    <img
-      src="/assets/owl-white.png"
-      alt="DreamMachine"
-      style="width:clamp(60px,8vw,100px);height:auto;opacity:0.7;margin-bottom:2.5rem;"
-    />
+    <a href="/" style="display:block;margin-bottom:2.5rem;" title="Back to home">
+      <img
+        src="/assets/owl-white.png"
+        alt="DreamMachine"
+        style="width:clamp(60px,8vw,100px);height:auto;opacity:0.7;transition:opacity 0.2s;"
+        onmouseover="this.style.opacity='1'"
+        onmouseout="this.style.opacity='0.7'"
+      />
+    </a>
     <p class="audiowide" style="
       color:#C9A97A;
       font-size:clamp(0.6rem,1vw,0.85rem);
@@ -135,6 +139,10 @@ import Nav from '../components/Nav.astro';
     const grid    = document.getElementById('events-grid')!;
     try {
       const res = await fetch('/api/events');
+      if (!res.ok) {
+        loading.textContent = `Could not load events (${res.status}). KV binding may not be configured.`;
+        return;
+      }
       const events: any[] = await res.json();
       loading.style.display = 'none';
       if (events.length === 0) {
