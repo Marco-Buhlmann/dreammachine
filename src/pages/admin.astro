@@ -1,0 +1,272 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+---
+
+<Layout title="Admin — DreamMachine">
+  <Nav />
+
+  <!-- Dark background -->
+  <div style="position:fixed;inset:0;z-index:0;background:#060608;"></div>
+
+  <!-- Password Gate -->
+  <div id="admin-gate" style="
+    position:fixed;inset:0;z-index:100;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    background:#060608;
+  ">
+    <img src="/assets/owl-white.png" alt="DreamMachine"
+      style="width:clamp(50px,6vw,80px);height:auto;opacity:0.5;margin-bottom:2.5rem;" />
+    <p class="audiowide" style="
+      color:#C9A97A;font-size:clamp(0.55rem,0.9vw,0.78rem);
+      letter-spacing:0.35em;margin-bottom:2rem;opacity:0.75;
+    ">ADMIN ACCESS</p>
+    <input id="admin-pw" type="password" placeholder="· · · · · ·" maxlength="12"
+      autocomplete="off" class="audiowide"
+      style="
+        background:rgba(255,255,255,0.04);
+        border:1px solid rgba(201,169,122,0.35);
+        border-radius:4px;color:#fff;
+        font-size:clamp(1rem,1.8vw,1.3rem);
+        letter-spacing:0.4em;text-align:center;
+        padding:0.7rem 1.5rem;
+        width:clamp(200px,18vw,260px);
+        outline:none;transition:border-color 0.2s;
+      " />
+    <p id="admin-gate-error" style="
+      color:#e05c5c;font-size:0.72rem;letter-spacing:0.12em;
+      opacity:0;transition:opacity 0.3s;font-family:sans-serif;margin-top:0.8rem;
+    ">Incorrect password</p>
+    <button id="admin-gate-btn" class="audiowide btn-glow" style="
+      color:#C9A97A;font-size:clamp(0.5rem,0.9vw,0.75rem);
+      letter-spacing:0.25em;padding:7px 0;
+      width:clamp(130px,12vw,180px);text-align:center;
+      background:rgba(14,31,47,0.5);border:none;
+      border-radius:20px;cursor:pointer;
+      transition:background 0.25s,color 0.25s;margin-top:1.2rem;
+    "
+    onmouseover="this.style.background='rgba(14,31,47,0.85)';this.style.color='#e8c99a'"
+    onmouseout="this.style.background='rgba(14,31,47,0.5)';this.style.color='#C9A97A'"
+    >E N T E R</button>
+  </div>
+
+  <!-- Admin Dashboard -->
+  <main id="admin-dashboard" style="
+    display:none;
+    position:relative;z-index:10;
+    min-height:100vh;
+    padding:7rem 2rem 4rem;
+    max-width:860px;margin:0 auto;
+  ">
+
+    <h1 class="audiowide" style="
+      color:#C9A97A;font-size:clamp(1rem,2vw,1.4rem);
+      letter-spacing:0.2em;margin-bottom:0.4rem;
+    ">Events Manager</h1>
+    <p style="color:rgba(255,255,255,0.35);font-size:0.78rem;letter-spacing:0.08em;margin-bottom:3rem;">
+      Changes publish instantly to the Events page.
+    </p>
+
+    <!-- Add Event Form -->
+    <div style="
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(201,169,122,0.2);
+      border-radius:8px;padding:2rem;margin-bottom:2.5rem;
+    ">
+      <p class="audiowide" style="
+        color:#C9A97A;font-size:0.72rem;letter-spacing:0.2em;margin-bottom:1.5rem;
+      ">ADD EVENT</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+        <div>
+          <label style="color:rgba(255,255,255,0.45);font-size:0.7rem;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;">EVENT NAME</label>
+          <input id="f-name" type="text" placeholder="e.g. DreamMachine XXVI" style="
+            width:100%;background:rgba(255,255,255,0.05);
+            border:1px solid rgba(255,255,255,0.12);border-radius:4px;
+            color:#fff;font-size:0.9rem;padding:0.6rem 0.8rem;outline:none;
+            transition:border-color 0.2s;box-sizing:border-box;
+          " />
+        </div>
+        <div>
+          <label style="color:rgba(255,255,255,0.45);font-size:0.7rem;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;">DATE</label>
+          <input id="f-date" type="date" style="
+            width:100%;background:rgba(255,255,255,0.05);
+            border:1px solid rgba(255,255,255,0.12);border-radius:4px;
+            color:#fff;font-size:0.9rem;padding:0.6rem 0.8rem;outline:none;
+            transition:border-color 0.2s;box-sizing:border-box;
+            color-scheme:dark;
+          " />
+        </div>
+      </div>
+
+      <div style="margin-bottom:1rem;">
+        <label style="color:rgba(255,255,255,0.45);font-size:0.7rem;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;">LINK / TICKET URL <span style="opacity:0.5;">(optional)</span></label>
+        <input id="f-link" type="url" placeholder="https://..." style="
+          width:100%;background:rgba(255,255,255,0.05);
+          border:1px solid rgba(255,255,255,0.12);border-radius:4px;
+          color:#fff;font-size:0.9rem;padding:0.6rem 0.8rem;outline:none;
+          transition:border-color 0.2s;box-sizing:border-box;
+        " />
+      </div>
+
+      <div style="margin-bottom:1.5rem;">
+        <label style="color:rgba(255,255,255,0.45);font-size:0.7rem;letter-spacing:0.1em;display:block;margin-bottom:0.4rem;">DESCRIPTION <span style="opacity:0.5;">(optional)</span></label>
+        <textarea id="f-desc" rows="2" placeholder="Location, lineup, notes..." style="
+          width:100%;background:rgba(255,255,255,0.05);
+          border:1px solid rgba(255,255,255,0.12);border-radius:4px;
+          color:#fff;font-size:0.9rem;padding:0.6rem 0.8rem;outline:none;
+          resize:vertical;box-sizing:border-box;font-family:inherit;
+        "></textarea>
+      </div>
+
+      <button id="add-btn" class="audiowide btn-glow" style="
+        color:#C9A97A;font-size:0.7rem;letter-spacing:0.2em;
+        padding:8px 0;width:180px;text-align:center;
+        background:rgba(14,31,47,0.6);border:none;
+        border-radius:20px;cursor:pointer;
+        transition:background 0.25s,color 0.25s;
+      "
+      onmouseover="this.style.background='rgba(14,31,47,0.9)';this.style.color='#e8c99a'"
+      onmouseout="this.style.background='rgba(14,31,47,0.6)';this.style.color='#C9A97A'"
+      >+ ADD EVENT</button>
+    </div>
+
+    <!-- Status message -->
+    <p id="status-msg" style="
+      color:#7ec87e;font-size:0.75rem;letter-spacing:0.1em;
+      opacity:0;transition:opacity 0.4s;margin-bottom:1.5rem;
+    ">Saved.</p>
+
+    <!-- Events List -->
+    <div id="events-list"></div>
+
+  </main>
+</Layout>
+
+<script>
+  const ADMIN_PW = '612501';
+
+  // ── Gate ───────────────────────────────────────────────
+  const gate     = document.getElementById('admin-gate')!;
+  const dashboard= document.getElementById('admin-dashboard')!;
+  const pwInput  = document.getElementById('admin-pw') as HTMLInputElement;
+  const gateBtn  = document.getElementById('admin-gate-btn')!;
+  const gateErr  = document.getElementById('admin-gate-error')!;
+
+  function unlock() {
+    if (pwInput.value === ADMIN_PW) {
+      gate.style.display = 'none';
+      dashboard.style.display = 'block';
+      loadEvents();
+    } else {
+      gateErr.style.opacity = '1';
+      pwInput.value = '';
+      setTimeout(() => gateErr.style.opacity = '0', 2000);
+    }
+  }
+  gateBtn.addEventListener('click', unlock);
+  pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
+
+  // ── Data ───────────────────────────────────────────────
+  let events: any[] = [];
+
+  async function loadEvents() {
+    try {
+      const res = await fetch('/api/events');
+      events = await res.json();
+    } catch {
+      events = [];
+    }
+    renderList();
+  }
+
+  async function saveEvents() {
+    const statusEl = document.getElementById('status-msg')!;
+    try {
+      const res = await fetch('/api/events', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-key': ADMIN_PW },
+        body: JSON.stringify({ events }),
+      });
+      if (res.ok) {
+        statusEl.textContent = '✓ Saved & published.';
+        statusEl.style.color = '#7ec87e';
+      } else {
+        statusEl.textContent = 'Error saving — check KV binding.';
+        statusEl.style.color = '#e05c5c';
+      }
+    } catch {
+      statusEl.textContent = 'Network error.';
+      statusEl.style.color = '#e05c5c';
+    }
+    statusEl.style.opacity = '1';
+    setTimeout(() => statusEl.style.opacity = '0', 3000);
+  }
+
+  // ── Add ────────────────────────────────────────────────
+  document.getElementById('add-btn')!.addEventListener('click', () => {
+    const name = (document.getElementById('f-name') as HTMLInputElement).value.trim();
+    const date = (document.getElementById('f-date') as HTMLInputElement).value;
+    const link = (document.getElementById('f-link') as HTMLInputElement).value.trim();
+    const desc = (document.getElementById('f-desc') as HTMLTextAreaElement).value.trim();
+    if (!name || !date) return;
+    events.push({ id: Date.now(), name, date, link, desc });
+    events.sort((a, b) => a.date.localeCompare(b.date));
+    saveEvents();
+    renderList();
+    (document.getElementById('f-name') as HTMLInputElement).value = '';
+    (document.getElementById('f-date') as HTMLInputElement).value = '';
+    (document.getElementById('f-link') as HTMLInputElement).value = '';
+    (document.getElementById('f-desc') as HTMLTextAreaElement).value = '';
+  });
+
+  // ── Render ─────────────────────────────────────────────
+  function renderList() {
+    const el = document.getElementById('events-list')!;
+    if (events.length === 0) {
+      el.innerHTML = '<p style="color:rgba(255,255,255,0.25);font-size:0.8rem;letter-spacing:0.1em;">No events yet.</p>';
+      return;
+    }
+    el.innerHTML = events.map((ev, i) => `
+      <div style="
+        background:rgba(255,255,255,0.03);
+        border:1px solid rgba(255,255,255,0.08);
+        border-radius:8px;padding:1.2rem 1.5rem;
+        margin-bottom:0.8rem;
+        display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;
+      ">
+        <div>
+          <p class="audiowide" style="color:#E5E5E5;font-size:0.9rem;margin:0 0 0.25rem;">${ev.name}</p>
+          <p style="color:#C9A97A;font-size:0.78rem;letter-spacing:0.06em;margin:0 0 0.2rem;">
+            ${new Date(ev.date + 'T12:00:00').toLocaleDateString('en-US',{weekday:'short',year:'numeric',month:'long',day:'numeric'})}
+          </p>
+          ${ev.desc ? `<p style="color:rgba(255,255,255,0.45);font-size:0.75rem;margin:0.2rem 0 0;">${ev.desc}</p>` : ''}
+          ${ev.link ? `<a href="${ev.link}" target="_blank" style="color:rgba(201,169,122,0.6);font-size:0.72rem;word-break:break-all;">${ev.link}</a>` : ''}
+        </div>
+        <button onclick="deleteEvent(${i})" style="
+          background:rgba(224,92,92,0.1);border:1px solid rgba(224,92,92,0.3);
+          color:#e05c5c;border-radius:4px;cursor:pointer;
+          font-size:0.72rem;padding:4px 10px;white-space:nowrap;
+          transition:background 0.2s;flex-shrink:0;
+        "
+        onmouseover="this.style.background='rgba(224,92,92,0.25)'"
+        onmouseout="this.style.background='rgba(224,92,92,0.1)'"
+        >Delete</button>
+      </div>
+    `).join('');
+  }
+
+  (window as any).deleteEvent = (i: number) => {
+    events.splice(i, 1);
+    saveEvents();
+    renderList();
+  };
+</script>
+
+<style>
+  input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.2); }
+  input:focus, textarea:focus { border-color: rgba(201,169,122,0.6) !important; }
+  #admin-pw::placeholder { opacity:0.3; letter-spacing:0.4em; }
+  #admin-pw:focus { border-color: rgba(201,169,122,0.7) !important; }
+</style>

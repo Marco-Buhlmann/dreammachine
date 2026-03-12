@@ -106,9 +106,18 @@ import Nav from '../components/Nav.astro';
     align-items:center;
     justify-content:center;
     text-align:center;
-    padding:6rem 1rem;
+    padding:8rem 2rem 4rem;
   ">
-    <!-- Content to be added later -->
+    <div id="events-loading" style="color:rgba(255,255,255,0.3);letter-spacing:0.1em;font-size:0.8rem;">Loading…</div>
+    <div id="events-empty" style="display:none;">
+      <img src="/assets/owl-white.png" alt="" style="width:clamp(60px,8vw,90px);opacity:0.25;margin-bottom:2rem;" />
+      <p class="audiowide" style="color:rgba(255,255,255,0.3);font-size:0.8rem;letter-spacing:0.2em;">No events scheduled yet.</p>
+    </div>
+    <div id="events-grid" style="
+      display:none;
+      width:100%;max-width:720px;
+      display:none;flex-direction:column;gap:1.2rem;
+    "></div>
   </main>
 
 </Layout>
@@ -120,11 +129,60 @@ import Nav from '../components/Nav.astro';
   const error = document.getElementById('gate-error');
   const overlay = document.getElementById('gate-overlay');
 
+  async function loadEvents() {
+    const loading = document.getElementById('events-loading')!;
+    const empty   = document.getElementById('events-empty')!;
+    const grid    = document.getElementById('events-grid')!;
+    try {
+      const res = await fetch('/api/events');
+      const events: any[] = await res.json();
+      loading.style.display = 'none';
+      if (events.length === 0) {
+        empty.style.display = 'flex';
+        empty.style.flexDirection = 'column';
+        empty.style.alignItems = 'center';
+      } else {
+        grid.style.display = 'flex';
+        grid.innerHTML = events.map(ev => `
+          <div style="
+            background:rgba(0,0,0,0.45);
+            backdrop-filter:blur(8px);
+            border:1px solid rgba(201,169,122,0.2);
+            border-radius:8px;
+            padding:1.5rem 2rem;
+            text-align:left;
+            display:flex;align-items:center;justify-content:space-between;gap:1rem;
+          ">
+            <div>
+              <p class="audiowide" style="color:#E5E5E5;font-size:clamp(0.9rem,1.6vw,1.1rem);margin:0 0 0.3rem;">${ev.name}</p>
+              <p style="color:#C9A97A;font-size:0.82rem;letter-spacing:0.08em;margin:0 0 0.2rem;">
+                ${new Date(ev.date + 'T12:00:00').toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}
+              </p>
+              ${ev.desc ? `<p style="color:rgba(255,255,255,0.5);font-size:0.78rem;margin:0.3rem 0 0;">${ev.desc}</p>` : ''}
+            </div>
+            ${ev.link ? `
+              <a href="${ev.link}" target="_blank" class="audiowide btn-glow" style="
+                color:#C9A97A;font-size:0.62rem;letter-spacing:0.18em;
+                padding:7px 0;width:120px;text-align:center;
+                background:rgba(14,31,47,0.6);border-radius:20px;
+                text-decoration:none;white-space:nowrap;flex-shrink:0;
+                display:inline-block;
+              ">TICKETS</a>
+            ` : ''}
+          </div>
+        `).join('');
+      }
+    } catch {
+      loading.textContent = 'Could not load events.';
+    }
+  }
+
   function tryUnlock() {
     if (input.value.trim().toUpperCase() === CORRECT_CODE) {
       overlay!.style.transition = 'opacity 0.6s';
       overlay!.style.opacity = '0';
       setTimeout(() => { overlay!.style.display = 'none'; }, 600);
+      loadEvents();
     } else {
       error!.style.opacity = '1';
       input.style.borderColor = 'rgba(224,92,92,0.7)';
