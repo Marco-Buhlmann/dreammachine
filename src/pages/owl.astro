@@ -343,14 +343,27 @@ import Nav from '../components/Nav.astro';
 
   /* ── Responsive ── */
   @media (max-width: 720px) {
-    .content-row {
-      grid-template-columns: 1fr;
-    }
+    .content-row { grid-template-columns: 1fr; }
     .content-row.reverse .text-col,
-    .content-row.reverse .badge-col {
-      order: unset;
-    }
+    .content-row.reverse .badge-col { order: unset; }
     .badge-col { min-height: 40vw; }
     .hero-desc { display: none; }
+  }
+  @media (max-width: 640px) {
+    /* Hero owl: fit within viewport */
+    .hero-owl-img { width: clamp(200px, 72vw, 285px); }
+    /* Info section: single column */
+    .owl-info-section {
+      grid-template-columns: 1fr !important;
+      padding-left: 6vw !important;
+      padding-right: 6vw !important;
+    }
+    /* Badge: fit within single-column layout */
+    .badge { width: clamp(200px, 80vw, 300px); }
+    .badge-col { padding: 28px 0; }
+    /* Content text: tighter padding */
+    .text-col { padding: 3rem 6vw; }
+    /* Gallery: 2-up on mobile */
+    .gallery-hex { width: clamp(120px, 42vw, 180px); }
   }
 </style>

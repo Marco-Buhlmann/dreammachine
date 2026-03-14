@@ -1,58 +1,80 @@
 ---
 ---
-<nav style="
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 40px;
-  background: rgba(0,0,0,0.02);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-">
-  <a href="/" class="audiowide" style="
+<nav class="dm-nav">
+  <a href="/" class="audiowide dm-nav-logo"
+    onmouseover="this.style.opacity='0.7'"
+    onmouseout="this.style.opacity='1'"
+  >DreamMachine</a>
+
+  <div style="display:flex;align-items:center;gap:24px;">
+    <a href="/contact" class="audiowide dm-nav-contact"
+      onmouseover="this.style.opacity='1'"
+      onmouseout="this.style.opacity='0.85'"
+    >Contact</a>
+
+    <a href="/admin" class="audiowide btn-glow dm-nav-login"
+      onmouseover="this.style.background='rgba(14,31,47,0.7)';this.style.color='#e8c99a'"
+      onmouseout="this.style.background='rgba(14,31,47,0.40)';this.style.color='#C9A97A'"
+    >LOGIN</a>
+  </div>
+</nav>
+
+<style>
+  .dm-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 40px;
+    background: rgba(0,0,0,0.02);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .dm-nav-logo {
     color: #E5E5E5;
     font-size: clamp(1rem, 1.8vw, 1.6rem);
     text-decoration: none;
     letter-spacing: 0.02em;
     transition: opacity 0.2s;
-  "
-  onmouseover="this.style.opacity='0.7'"
-  onmouseout="this.style.opacity='1'"
-  >
-    DreamMachine
-  </a>
+  }
+  .dm-nav-contact {
+    color: #E5E5E5;
+    font-size: clamp(0.7rem, 1.1vw, 1rem);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+  .dm-nav-login {
+    color: #C9A97A;
+    font-size: clamp(0.525rem, 0.825vw, 0.75rem);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    padding: 6px 21px;
+    background: rgba(14, 31, 47, 0.40);
+    border-radius: 20px;
+    transition: background 0.2s, color 0.2s;
+    display: inline-block;
+  }
 
-  <div style="display:flex;align-items:center;gap:24px;">
-    <a href="/contact" class="audiowide" style="
-      color: #E5E5E5;
-      font-size: clamp(0.7rem, 1.1vw, 1rem);
-      text-decoration: none;
-      letter-spacing: 0.08em;
-      opacity: 0.85;
-      transition: opacity 0.2s;
-    "
-    onmouseover="this.style.opacity='1'"
-    onmouseout="this.style.opacity='0.85'"
-    >Contact</a>
-
-    <!-- LOGIN pill button — same glow style as OWL/EVENTS -->
-    <a href="/admin" class="audiowide btn-glow" style="
-      color: #C9A97A;
-      font-size: clamp(0.525rem, 0.825vw, 0.75rem);
-      text-decoration: none;
-      letter-spacing: 0.15em;
-      padding: 6px 21px;
-      background: rgba(14, 31, 47, 0.40);
-      border-radius: 20px;
-      transition: background 0.2s, color 0.2s;
-      display: inline-block;
-    "
-    onmouseover="this.style.background='rgba(14,31,47,0.7)';this.style.color='#e8c99a'"
-    onmouseout="this.style.background='rgba(14,31,47,0.40)';this.style.color='#C9A97A'"
-    >LOGIN</a>
-  </div>
-</nav>
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .dm-nav {
+      padding: 12px 20px;
+    }
+    .dm-nav-logo {
+      font-size: 0.9rem;
+    }
+    .dm-nav-contact {
+      font-size: 0.65rem;
+    }
+    .dm-nav-login {
+      font-size: 0.6rem;
+      padding: 6px 14px;
+      letter-spacing: 0.12em;
+    }
+  }
+</style>

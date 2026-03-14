@@ -211,4 +211,14 @@ import Nav from '../components/Nav.astro';
 <style>
   #gate-input::placeholder { opacity: 0.35; letter-spacing: 0.4em; }
   #gate-input:focus { border-color: rgba(201,169,122,0.8); }
+
+  @media (max-width: 640px) {
+    /* Gate: larger input on mobile */
+    #gate-input { width: clamp(220px, 80vw, 280px) !important; font-size: 1rem !important; }
+    #gate-btn   { font-size: 0.65rem !important; width: 160px !important; }
+    /* Event cards: stack vertically so ticket btn doesn't overflow */
+    #events-grid > div > div { flex-direction: column !important; align-items: flex-start !important; gap: 0.8rem !important; }
+    /* Main content: account for fixed footer */
+    #events-content { padding-bottom: 5rem !important; }
+  }
 </style>
