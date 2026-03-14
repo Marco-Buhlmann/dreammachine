@@ -283,8 +283,16 @@ import Nav from '../components/Nav.astro';
     gap: clamp(16px, 2.5vw, 40px);
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;          /* single line always */
+    overflow-x: auto;           /* scroll on mobile */
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding: 0 clamp(16px, 4vw, 40px);
+    width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
+  .gallery-row::-webkit-scrollbar { display: none; }
   /* Octagon gallery — full-bleed image */
   .gallery-hex {
     width: clamp(160px, 20vw, 280px);
@@ -292,6 +300,7 @@ import Nav from '../components/Nav.astro';
     clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
     overflow: hidden;
     flex-shrink: 0;
+    scroll-snap-align: center;
   }
   .gallery-hex img {
     width: 100%;
@@ -363,7 +372,7 @@ import Nav from '../components/Nav.astro';
     .badge-col { padding: 28px 0; }
     /* Content text: tighter padding */
     .text-col { padding: 3rem 6vw; }
-    /* Gallery: 2-up on mobile */
-    .gallery-hex { width: clamp(120px, 42vw, 180px); }
+    /* Gallery: slightly smaller octagons on mobile but still single row */
+    .gallery-hex { width: clamp(130px, 38vw, 180px); }
   }
 </style>
